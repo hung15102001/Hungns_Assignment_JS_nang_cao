@@ -10,7 +10,7 @@ export const get = (id) => {
 };
 export const remove = (id) => {
     const url = `/posts/${id}`;
-    return instance.detele(url);
+    return instance.delete(url);
 };
 export const add = (post) => {
     const url = `/posts`;

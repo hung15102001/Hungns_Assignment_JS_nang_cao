@@ -10,7 +10,7 @@ export const get = (id) => {
 };
 export const remove = (id) => {
     const url = `/cateProducts/${id}`;
-    return instance.detele(url);
+    return instance.delete(url);
 };
 export const add = (product) => {
     const url = `/cateProducts`;

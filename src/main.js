@@ -3,6 +3,7 @@ import aboutPage from "./page/about";
 import catePageAdmin from "./page/admin/category";
 import addCatePage from "./page/admin/category/add";
 import updateCatePage from "./page/admin/category/update";
+import feedbackAdmin from "./page/admin/feedback";
 import newListAdmin from "./page/admin/news";
 import AdminAddPosts from "./page/admin/news/addNewPage";
 import AdminEditnew from "./page/admin/news/updateNewPage";
@@ -25,7 +26,7 @@ import SignupPage from "./page/signup";
 const router =  new Navigo("/", {linksSelector: "a"})
 const print = async (content,id) => {
     document.getElementById("app").innerHTML =  await content.render(id);
-    if(content.afterRender) await content.afterRender();
+    if(content.afterRender) await content.afterRender(id);
 }
 router.on("/admin/*", () => {}, {
     before: (done) => {
@@ -71,5 +72,6 @@ router.on({
     "/admin/categories": () => print(catePageAdmin),
     "/admin/categories/add":() => print(addCatePage),
     "/admin/categories/edit/:id": ({data}) => print(updateCatePage, data.id),
+    "/admin/feedback":()=> print(feedbackAdmin)
 });
 router.resolve();

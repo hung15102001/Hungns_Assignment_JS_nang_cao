@@ -47,7 +47,7 @@ const proAdminPage = {
             </td>
             
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-            <a href="" data-id="${pro.id}" class="btns text-indigo-600 hover:text-indigo-900">delete</a>
+            <div data-id="${pro.id}" class="btns text-indigo-600 hover:text-indigo-900">delete</div>
              </td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
               <a href="/admin/products/edit/${pro.id}" class="text-indigo-600 hover:text-indigo-900">Edit</a>

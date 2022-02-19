@@ -1,6 +1,7 @@
 import { getAll, remove } from "../../../api/categories"
 import headerAdmin from "../../../component/admin/headerAdmin"
-
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 const catePageAdmin ={
    async render(){
        const response = await getAll()
@@ -33,7 +34,7 @@ const catePageAdmin ={
             </td>
             
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-            <a href="" data-id="${cate.id}" class="btn text-indigo-600 hover:text-indigo-900">delete</a>
+            <div data-id="${cate.id}" class="btn text-indigo-600 hover:text-indigo-900">delete</div>
              </td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
               <a href="/admin/categories/edit/${cate.id}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
@@ -52,13 +53,17 @@ const catePageAdmin ={
         `
     },
     afterRender(){
-      const btns =  document.querySelector('.btn');
+      const btns =  document.querySelectorAll('.btn');
       btns.forEach(btn =>{
         const id = btn.dataset.id;
+        console.log(id)
         btn.addEventListener('click', function(){
           const confirm = window.confirm("Bạn có chắc muốn xóa  không?");
           if(confirm){
-            remove(id).then(document.location.href="/admin/categories")
+            remove(id).then(function(){
+              toastr.success("Xóa thành công chuyển sau");
+              document.location.href="/admin/categories";
+            })
           }
         })
       });

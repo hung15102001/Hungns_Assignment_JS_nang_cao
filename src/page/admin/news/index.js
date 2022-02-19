@@ -1,9 +1,8 @@
 
 import { getAll, remove } from "../../../api/post";
 import headerAdmin from "../../../component/admin/headerAdmin";
-
-
-
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 const newListAdmin = {
     async render() {
         const response = await getAll();
@@ -41,10 +40,10 @@ const newListAdmin = {
                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full "> ${post.desc} </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a href="" data-id="${post.id}" class="btn text-indigo-600 text-red-600 hover:text-indigo-900">delete</a>
+                    <div data-id="${post.id}" class="btn text-indigo-600 text-red-600 hover:text-indigo-900">delete</div>
                      </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      <a href="/admin/news/edit/${post.id}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                     </td>
                   </tr>
                    
@@ -68,9 +67,11 @@ const newListAdmin = {
             const id = btn.dataset.id;
             btn.addEventListener('click', function(){
                 const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?")
-                if(confirm
-                  ){
-                    remove(id).then(document.location.href="/admin/news")
+                if(confirm){
+                    remove(id).then(function(){
+                      toastr.success("Xóa thành công")
+                      document.location.href="/admin/news"
+                    })
                 }
             })
         })

@@ -52,7 +52,7 @@ const addCatePage = {
                 setTimeout(() => {
                   document.location.href = "/admin/categories";
                 }, 2000)
-              });;
+              });
         });
     },
 

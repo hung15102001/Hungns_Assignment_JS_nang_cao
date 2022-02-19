@@ -1,7 +1,10 @@
+
 import footer from "../component/footer"
 import header from "../component/header"
 import nav from "../component/nav"
-
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
+import { add } from "../api/feedback";
 const contactPage = {
    async render(){
         return `
@@ -17,11 +20,11 @@ const contactPage = {
                     <div id="success"></div>
                     <form name="sentMessage" id="contactForm" novalidate="novalidate">
                         <div class="control-group">
-                            <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name">
+                            <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" value="${JSON.parse(localStorage.getItem("user")).fullname}">
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email">
+                            <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" value="${JSON.parse(localStorage.getItem("user")).email}">
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
@@ -29,11 +32,11 @@ const contactPage = {
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <textarea class="form-control" rows="6" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                            <textarea class="form-control" rows="6" id="desc" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>
-                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Send
+                            <button class="btn btn-primary py-2 px-4" type="submit">Send
                                 Message</button>
                         </div>
                     </form>
@@ -41,7 +44,7 @@ const contactPage = {
             </div>
             <div class="col-lg-5 mb-5">
                 <h5 class="font-weight-semi-bold mb-3">Get In Touch</h5>
-                <p>Justo sed diam ut sed amet duo amet lorem amet stet sea ipsum, sed duo amet et. Est elitr dolor elitr erat sit sit. Dolor diam et erat clita ipsum justo sed.</p>
+                <p>Hãy gửi phản hồi để chúng tôi cải thiện</p>
                 <div class="d-flex flex-column mb-3">
                     <h5 class="font-weight-semi-bold mb-3">Store 1</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
@@ -60,6 +63,20 @@ const contactPage = {
     ${footer.render()}
         `
     },
-    
+    afterRender(){
+        const formContact = document.querySelector("#contactForm");
+        formContact.addEventListener("submit", async(e) => {
+            e.preventDefault();
+
+            add({
+                name: document.querySelector("#name").value,
+                email: document.querySelector("#email").value,
+                subject: document.querySelector("#subject").value,
+                message: document.querySelector("#desc").value,
+            }).then(function(){
+                toastr.success("Đã gửi phản hồi, Cảm ơn bạn");
+            });
+        })
+    }
 }
 export default contactPage
