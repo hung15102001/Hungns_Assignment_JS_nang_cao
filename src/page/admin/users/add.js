@@ -43,17 +43,23 @@ const userAminAdd = {
                   <div class="mt-1">
                     <input id="password" name="password" type="password" rows="3" class="password shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="*********"></input>
                   </div>
-                  <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
+                 
                 </div>
+
+                <div>
+                <label for="about" class="block text-sm font-medium text-gray-700">Password comfirm </label>
+                <div class="mt-1">
+                  <input id="password" name="password_comfirm" type="password" rows="3" class="password shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="*********"></input>
+                </div>
+               
+              </div>
       
            
                   <div>
                     <label class="block text-sm font-medium text-gray-700"> Photo </label>
                     <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                       <div class="space-y-1 text-center">
-                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                          <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                        <img src="" id="imgView" width="150px">
                         <div class="flex text-sm text-gray-600">
                           <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                             <span>Upload a file</span>
@@ -79,44 +85,96 @@ const userAminAdd = {
         `
     },
     afterRender() {
-        const formAddUser = document.querySelector("#formadd");
+        const formAddUser = $("#formadd");
+        const imgView = document.querySelector('#imgView');
+        const imgPost = document.querySelector('#file-upload');
+        let link = ""
         const CLOUDINARY_PRESET = "tsllkbbb";
         const CLOUDINARY_API_URL = "https://api.cloudinary.com/v1_1/cornyhung/image/upload";
+        
+        
+        imgPost.addEventListener('change', function(e){
+          imgView.src =URL.createObjectURL(e.target.file[0])
+        })
 
-        formAddUser.addEventListener("submit", async (e) => {
-            e.preventDefault();
+        formAddUser.validate({
+          rules:{
+            "name":{
+              required: true,
+              minlength: 6
+            },
+            "email":{
+              required: true,
+              email: true
+            }, 
+            "password":{
+              required: true,
+              minlength: 6
+            },
+            "password_comfirm":{
+              required: true,
+              minlength: 6,
+              equalTo: "#password"
+            }
 
-            // Lấy giá trị của input file
-            const file = document.querySelector("#file-upload").files[0];
-            // Gắn vào đối tượng formData
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("upload_preset", CLOUDINARY_PRESET);
+          },
 
-            // call api cloudinary, để upload ảnh lên
-            // call API thêm bài viết
-              const { data } = await axios.post(CLOUDINARY_API_URL, formData, {
-                headers: {
-                    "Content-Type": "application/form-data",
-                },
-            });
-            add({
-                name: document.querySelector("#name").value,
-                img: data.url,
-                email: document.querySelector("#email").value,
-                password: document.querySelector("#password").value,
-                
-            }, function(){
-              toastr.success("thêm thành công chuyển sau 2s");
-            setTimeout(() => {
-              document.location.href = "/admin/users";
-            }, 2000);
-            });
-             
-            
-          
-               
-        });
+          messages:{
+            "name":{
+              required: "Bạn không được bỏ trống!",
+              minlength: "It nhất 6 ký tự"
+            },
+            "email":{
+              required: "Bạn không được bỏ trống!",
+              email: "Bạn phải nhập đúng đia chỉ email"
+            }, 
+            "password":{
+              required: "Bạn không được bỏ trống!",
+              minlength: "Ít nhất 6 ký tự"
+            },
+            "password_comfirm":{
+              required: "Bạn không được bỏ trống!",
+              minlength: "It nhất 6 ký tự",
+              equalTo: "Mật khẩu không trùng"
+            }
+          },
+
+          submitHandler: () => {
+            async function handleAddUser(){
+
+              const file = document.querySelector("#file-upload").files[0];
+              if(file){
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("upload_preset", CLOUDINARY_PRESET);
+    
+              
+                  const { data } = await axios.post(CLOUDINARY_API_URL, formData, {
+                    headers: {
+                        "Content-Type": "application/form-data",
+                    },
+                });
+                link = data.url
+              }
+                add({
+                    name: document.querySelector("#name").value,
+                    img: link || "",
+                    email: document.querySelector("#email").value,
+                    password: document.querySelector("#password").value,
+                    
+                }, function(){
+                  toastr.success("thêm thành công chuyển sau 2s");
+                setTimeout(() => {
+                  document.location.href = "/admin/users";
+                }, 2000);
+                });    
+            }
+            handleAddUser();
+          }
+        })
+
+         
+      
     },
 }
 export default userAminAdd

@@ -82,7 +82,7 @@ const SignupPage = {
         `;
     },
     afterRender() {
-        const signupForm = document.querySelector("#formSignup");
+        const signupForm = $("#formSignup");
 
         signupForm.validate({
           rules:{

@@ -16,7 +16,7 @@ const addProPage = {
             <div class="md:grid md:grid-cols-3 md:gap-6">
               <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
-                  <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">Products</h3>
                   <p class="mt-1 text-sm text-gray-600">Thêm Sản phẩm</p>
                 </div>
               </div>
@@ -29,7 +29,7 @@ const addProPage = {
                           <label for="company-website" class="block text-sm font-medium text-gray-700"> Name </label>
                           <div class="mt-1 flex rounded-md shadow-sm">
                         
-                            <input type="text" name="email" id="name" class="name py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="Abc" requied>
+                            <input type="text" name="name" id="name" class="name py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="Abc" requied>
                           </div>
                         </div>
                       </div>
@@ -37,11 +37,11 @@ const addProPage = {
                       <div>
                         <label for="about" class="block text-sm font-medium text-gray-700">Price</label>
                         <div class="mt-1">
-                          <input id="price" name="name" rows="3" class="price py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100$" requied></input>
+                          <input id="price" name="price" rows="3" class="price py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100$" required></input>
                         </div>
                         <label for="about" class="block text-sm font-medium text-gray-700">Quantity</label>
                         <div class="mt-1">
-                        <input id="quantity" name="name" rows="3" class="quantity py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100" requied></input>
+                        <input id="quantity" name="quantity" rows="3" class="quantity py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100" requied></input>
                       </div>
                      
                       </div>
@@ -81,9 +81,7 @@ const addProPage = {
                         <label class="block text-sm font-medium text-gray-700"> Photo </label>
                         <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                           <div class="space-y-1 text-center">
-                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                              <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                            <img src="" id="imgView" width="150px">
                             <div class="flex text-sm text-gray-600">
                               <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                 <span>Upload a file</span>
@@ -109,43 +107,105 @@ const addProPage = {
     },
 
     afterRender() {
-        const formAddUser = document.querySelector("#formadd");
+        const formAddPro = $("#formadd");
+        const imgView = document.querySelector('#imgView');
+        const imgPost = document.querySelector('#file-upload');
+        let link = "";
         const CLOUDINARY_PRESET = "tsllkbbb";
         const CLOUDINARY_API_URL = "https://api.cloudinary.com/v1_1/cornyhung/image/upload";
+
+        imgPost.addEventListener('change', function(e){
+          imgView.src = URL.createObjectURL(e.target.file[0])
+        })
         
-        formAddUser.addEventListener("submit", async (e) => {
-            e.preventDefault();
+        formAddPro.validate({
+          rules:{
+            "name":{
+              required: true,
+              minlength:6
+            },
+            "price":{
+              required: true,
+              number: true
+            },
+            "quantity":{
+              required: true,
+              number: true
+            },
+            "desc":{
+              required: true,
+              maxlength: 100
+            },
+            "file-upload":{
+              required: true
+            }
+          },
+          messages:{
+            "name":{
+              required: "Trường này là bắt buộc",
+              minlength:"It nhất là 6 ký tự"
+            },
+            "price":{
+              required: "Trường này là bắt buộc",
+              number: "Bạn phải nhập số"
+            },
+            "quantity":{
+              required: "Trường này là bắt buộc",
+              number: "Bạn phải nhập số"
+            },
+            "desc":{
+              required: "Trường này là bắt buộc",
+              maxlength: "Không được quá 100 ký tự"
+            },
+            "file-upload":{
+              required: "Trường này là bắt buộc"
+            },
 
-            const file = document.querySelector("#file-upload").files[0];
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("upload_preset", CLOUDINARY_PRESET);
+          },
 
-              const { data } = await axios.post(CLOUDINARY_API_URL, formData, {
-                headers: {
-                    "Content-Type": "application/form-data",
-                },
-            });
-            add({
-                name: document.querySelector("#name").value,
-                img: data.url,
-                price: document.querySelector("#price").value,
-                quantity: document.querySelector('#quantity').value,
-                cateId: document.querySelector("#cate").value,
-                desc: document.querySelector("#desc").value,
-                status: document.querySelector("#status").value
-                
-            }).then(function(){
-              toastr.success("thêm thành công chuyển sau 2s");
-              setTimeout(() => {
-                document.location.href = "/admin/products";
-              }, 2000)
-            });
-             
+            submitHandler: ()=>{
+              async function handleAddPro(){
+                const file = document.querySelector("#file-upload").files[0];
+                if(file){
+                  const formData = new FormData();
+                  formData.append("file", file);
+                  formData.append("upload_preset", CLOUDINARY_PRESET);
+                  const { data } = await axios.post(CLOUDINARY_API_URL, formData, {
+                    headers: {
+                        "Content-Type": "application/form-data",
+                    },
+                });
+                link = data.url
+              }
+                add({
+                    name: document.querySelector("#name").value,
+                    img: link || "",
+                    price: document.querySelector("#price").value,
+                    quantity: document.querySelector('#quantity').value,
+                    cateId: document.querySelector("#cate").value,
+                    desc: document.querySelector("#desc").value,
+                    status: document.querySelector("#status").value
+                    
+                }).then(function(){
+                  toastr.success("thêm thành công chuyển sau 2s");
+                  setTimeout(() => {
+                    document.location.href = "/admin/products";
+                  }, 2000)
+                });
+                 
+              }
+              handleAddPro();
+            }
+
+         
+
+        })
+      
+
             
           
                
-        });
+       
     },
 }
 export default addProPage

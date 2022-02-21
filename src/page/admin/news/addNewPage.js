@@ -74,7 +74,7 @@ const AdminAddPosts = {
         `;
     },
     afterRender() {
-        const formAddPost = document.querySelector("#formAddPost");
+        const formAddPost = $("#formAddPost");
         const imgPreview = document.querySelector('#imgView');
        const imgPost = document.querySelector('#file-upload');
        let img = ""
@@ -117,7 +117,7 @@ const AdminAddPosts = {
             submitHandler: () =>{
               async function handleAddPost(){
                 const file = document.querySelector("#file-upload").files[0];
-           
+           if(file){
                 const formData = new FormData();
                 formData.append("file", file);
                 formData.append("upload_preset", CLOUDINARY_PRESET);
@@ -128,18 +128,19 @@ const AdminAddPosts = {
                         "Content-Type": "application/form-data",
                     },
                 });
-               
+                img = data.url
+              }
                 add({
                     
                     title: document.querySelector("#title-post").value,
-                    img: data.url,
+                    img: img || "",
                     desc: document.querySelector("#desc-post").value,
                 }).then(function(){
                     toastr.success("thêm thành công chuyển sau 2s");
                     setTimeout(() => {
                       document.location.href = "/admin/news";
                     }, 2000)
-                  });;
+                  });
            
               }
               handleAddPost();

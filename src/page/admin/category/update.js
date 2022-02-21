@@ -2,7 +2,8 @@ import { edit, get } from "../../../api/categories";
 import headerAdmin from "../../../component/admin/headerAdmin"
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
-
+import $ from "jquery";
+import validate from "jquery-validation";
 const updateCatePage = {
     async render(id){
         const {data} = await get(id);
@@ -25,7 +26,7 @@ const updateCatePage = {
                       <label for="company-website" class="block text-sm font-medium text-gray-700"> Name  </label>
                       <div class="mt-1 flex rounded-md shadow-sm">
                     
-                        <input type="text" name="email" id="name" class="name py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="abc" value="${data.name}">
+                        <input type="text" name="name" id="name" class="name py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="abc" value="${data.name}">
                       </div>
                     </div>
                   </div>
@@ -42,20 +43,42 @@ const updateCatePage = {
         `
     },
     afterRender(id) {
-        const formUpdatePost = document.querySelector("#formUpdateCate");
-        formUpdatePost.addEventListener("submit", async (e) => {
-            e.preventDefault();
-    
-            edit({
+      const formUpdateCate = $('#formUpdateCate');
+      // formAddPost.addEventListener("submit", async (e) => {
+      //     e.preventDefault();
+        
+        formUpdateCate.validate({
+          rules: {
+            "name":{
+              required: true,
+              minlength:6
+            }
+          },
+          messages:{ 
+            "name":{
+            required: "Ban kh được bỏ trống trường này",
+            minlength: "Nhập ít nhất 6 ký tự"
+            }
+          },
+          submitHandler: () => {
+          
+            async function handleUpdateCate(){
+              
+              edit({
                 id: id,
-                name: document.querySelector("#name").value,
+                name: document.querySelector('#name').value,
             }).then(function(){
-                toastr.success("Update thành công chuyển sau 2s");
+              console.log(123)
+                toastr.success("thêm thành công chuyển sau 2s");
                 setTimeout(() => {
                   document.location.href = "/admin/categories";
                 }, 2000)
-              });;
-        });
+              });
+            }
+            handleUpdateCate();
+        },
+       
+        })
     },
 }
 export default updateCatePage
