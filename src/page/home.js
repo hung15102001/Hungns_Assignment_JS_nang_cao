@@ -233,6 +233,7 @@ const homePage = {
         `
     },
     afterRender(){
+        
     }
 }
 export default homePage

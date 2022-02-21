@@ -4,15 +4,16 @@ import bannerShop from "../../component/banner/bannerPro"
 import footer from "../../component/footer"
 import header from "../../component/header"
 import nav from "../../component/nav"
-import { addToCart } from "../ultils/cartApi"
 import toastr from "toastr"
+import { addToCart } from "../ultils/cartApi"
+import { data } from "jquery"
 
 const shopPage = {
     async render(){
         const response = await getAll();
         return `
             ${header.render()}
-            ${nav.render()}
+            ${await nav.render()}
             <div class="container-fluid pt-5">
             <div class="row px-xl-5">
                 <!-- Shop Sidebar Start -->
@@ -136,12 +137,12 @@ const shopPage = {
     
                 <!-- Shop Product Start -->
                 <div class="col-lg-9 col-md-12">
-                    <div class="row pb-3">
+                    <div class="row pb-3" id="item_list">
                         <div class="col-12 pb-1">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <form action="">
+                                <form >
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search by name">
+                                        <input type="text" id="form_control" class="form-control" placeholder="Search by name" onkeyup="tk()">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-transparent text-primary">
                                                 <i class="fa fa-search"></i>
@@ -162,8 +163,9 @@ const shopPage = {
                                 </div>
                             </div>
                         </div>
+                     
                         ${response.data.map((products)=> `
-                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1" id="product-filter">
                             <div class="card product-item border-0 mb-4">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                     <img class="img-fluid w-100" src="${products.img}" alt="">
@@ -175,13 +177,13 @@ const shopPage = {
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="/shop/${products.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <a href="/shop/${products.id}" id="detail" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                                     <button data-id="${products.id}" class="btnAddCart btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
                                 </div>
                             </div>
                         </div>
                         `).join("")}
-                        
+                     
                       
                     </div>
 
@@ -198,18 +200,23 @@ const shopPage = {
     },
     afterRender(){
         const btnsAddToCart = document.querySelectorAll('.btnAddCart');
+        
+
         btnsAddToCart.forEach(btn => {
             const id = btn.dataset.id;
 
             btn.addEventListener('click', async function(){
                 // console.log(inputValue.value)
                 const { data } = await get(id);
-                addToCart({...data, quantity: 1}, function(){
+                addToCart({...data, quantity: 1}, () =>{
                     toastr.success(`Thêm sản phẩm ${data.name} vào giỏ hàng thành công!`);
-                    document.location.href = "/cart";
+                   
                 })
             })
         })
+
+
+      
         
     }
 }

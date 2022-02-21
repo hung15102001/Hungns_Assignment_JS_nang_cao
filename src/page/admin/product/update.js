@@ -40,6 +40,10 @@ const updatePro = {
                         <div class="mt-1">
                           <input id="price" name="name" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100$" value="${data.price}" requied></input>
                         </div>
+                        <label for="about" class="block text-sm font-medium text-gray-700">Quantity</label>
+                        <div class="mt-1">
+                        <input id="quantity" name="name" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100$" value="${data.quantity}" requied></input>
+                      </div>
                      
                       </div>
                       <div>
@@ -70,7 +74,7 @@ const updatePro = {
                     <div>
                     <label for="about" class="block text-sm font-medium text-gray-700">Description</label>
                     <div class="mt-1">
-                      <textarea id="desc" name="desc" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Chuối hột" value="${data.desc}" requied></textarea>
+                      <textarea id="desc" name="desc" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Chuối hột" requied>${data.desc}</textarea>
                     </div>
                   </div>
                
@@ -138,6 +142,7 @@ const updatePro = {
                 name: document.querySelector("#name").value,
                 img: imgLink ? imgLink : imgView.src,
                 price: document.querySelector("#price").value,
+                quantity: document.querySelector("#quantity").value,
                 cateId: document.querySelector("#cate").value,
                 desc: document.querySelector("#desc").value,
                 status: document.querySelector("#status").value

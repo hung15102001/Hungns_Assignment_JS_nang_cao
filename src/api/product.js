@@ -21,7 +21,7 @@ export const edit = (post) => {
     return instance.put(url, post);
 };
 export const getCate = (id) =>{
-    const url = `/products?catePostId=${id}`;
+    const url = `/products?cateId=${id}`;
     return instance.post(url, id)
 }
 

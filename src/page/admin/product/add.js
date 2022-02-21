@@ -37,6 +37,10 @@ const addProPage = {
                         <div class="mt-1">
                           <input id="price" name="name" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100$" requied></input>
                         </div>
+                        <label for="about" class="block text-sm font-medium text-gray-700">Quantity</label>
+                        <div class="mt-1">
+                        <input id="quantity" name="name" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100" requied></input>
+                      </div>
                      
                       </div>
                       <div>
@@ -124,6 +128,7 @@ const addProPage = {
                 name: document.querySelector("#name").value,
                 img: data.url,
                 price: document.querySelector("#price").value,
+                quantity: document.querySelector('#quantity').value,
                 cateId: document.querySelector("#cate").value,
                 desc: document.querySelector("#desc").value,
                 status: document.querySelector("#status").value

@@ -3,14 +3,17 @@ import { getAll } from "../api/categories";
 import bannerHome from "./banner/bannerHome";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+
+
 const nav = {
    async render(){
        const response = await getAll();
+    
         return `
         <div class="container-fluid mb-5">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                <a class=" shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
                     <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
@@ -24,9 +27,13 @@ const nav = {
                                 <a href="" class="dropdown-item">Baby's Dresses</a>
                             </div>
                         </div>
+                       
                         ${response.data.map((cate) => `
-                            <a href="/categories/${cate.id}" class="nav-item nav-link">${cate.name}</a>
-                        `).join("")}
+                            
+                            <a  href="/products?cateId=${cate.id}" class="nav-item nav-link">${cate.name}</a> 
+                            `).join("")}
+                           
+                       
                         
                     </div>
                 </nav>
@@ -59,7 +66,7 @@ const nav = {
                             <a href="/">${JSON.parse(localStorage.getItem("user")).email}</a>
                             ${localStorage.getItem("user") ? '<a href="/signin" id="logout" class="nav-item nav-link">Logout</a>'
 
-                             : `
+                             :`
                              <a href="/signin" class="nav-item nav-link">Login</a>
                             <a href="/signup" class="nav-item nav-link">Register</a>
                              `}
@@ -75,7 +82,7 @@ const nav = {
         `
     },
     afterRender(){
-     
+      
         const email = document.querySelector('#email');
         const logout =  document.querySelector('#logout');
         if(email){
@@ -83,8 +90,9 @@ const nav = {
         }
         if(logout){
           logout.addEventListener('click', function(){
-           window.location.href = "/login";
+           
             
+           window.location.href = "/login";
             toastr.success("Logout thành công")
           })
         }

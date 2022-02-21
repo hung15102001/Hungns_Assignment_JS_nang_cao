@@ -4,12 +4,12 @@ import nav from "../../component/nav"
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import { get } from "../../api/product";
+import { addToCart, decreaseQuantity, increaseQuantity } from "../ultils/cartApi";
+import { reRender } from "../ultils";
 
 const shopDetail = {
    async render(id){
        const { data:products } =  await get(id);
-    //    console.log(123)
-    //    console.log(product)
         return `
             ${header.render()}
             ${await nav.render()}
@@ -18,9 +18,9 @@ const shopDetail = {
                 <div class="col-lg-5 pb-5">
                     <div id="product-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner border">
-                            <div class="carousel-item">
-                                <img class="w-100 h-100" src="${products.img}" alt="Image">
-                            </div>
+                           
+                                <img src="${products.img}"  class="rounded w-100 h-100">
+                          
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ const shopDetail = {
                             <small class="far fa-star"></small>
                         </div>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">${products.price}</h3>
+                    <h3 class="font-weight-semi-bold mb-4">${products.price}$</h3>
                     <p class="mb-4">${products.desc}</p>
                     <div class="d-flex mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
@@ -91,18 +91,18 @@ const shopDetail = {
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
+                                <button data-id="${products.id}" class="btn btn-primary btn-minus " type="button">
                                 <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control bg-secondary text-center" value="1">
+                            <input id="inputValue" type="text" class="form-control bg-secondary text-center" value="1">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
+                                <button  class="btn btn-primary btn-plus "  type="button">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
-                        <button id="btnAddToCart" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                        <button data-id="${products.id}" id="btnAddToCart" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                     </div>
                  
                 </div>
@@ -114,13 +114,27 @@ const shopDetail = {
     },
     afterRender() {
         const btnAddToCart = document.querySelector("#btnAddToCart");
-        const { id } = btnAddToCart.dataset;
-        const inputValue = document.querySelector("#inputValue");
+        const  id  = btnAddToCart.dataset.id;
+        var inputValue = document.querySelector("#inputValue").value;
+        var minus = document.querySelector('.btn-minus');
+        var plus = document.querySelector('.btn-plus');
+       
+
+        minus.onclick = function(){
+            if(parseInt(inputValue)>1){
+                document.querySelector("#inputValue").value = parseInt(inputValue)-1;
+            }
+        }
+        
+        plus.onclick = function(){
+            if(parseInt(inputValue)< JSON.parse(localStorage.getItem(pro))){
+
+            }
+        }
 
         btnAddToCart.addEventListener("click", async () => {
-            // console.log(inputValue.value)
             const { data } = await get(id);
-            console.log(data);
+            
             addToCart({ ...data, quantity: inputValue.value ? inputValue.value : 1 }, () => {
                 toastr.success(`Thêm sản phẩm ${data.name} vào giỏ hàng thành công!`);
             });

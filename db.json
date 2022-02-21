@@ -53,10 +53,6 @@
     {
       "name": "Pant",
       "id": "4"
-    },
-    {
-      "id": "QkS62_g",
-      "name": "demo1233"
     }
   ],
   "users": [
@@ -92,20 +88,12 @@
   ],
   "products": [
     {
-      "id": "24",
-      "name": "ggggggggggg updated 23",
-      "img": "http://res.cloudinary.com/ecommercer2021/image/upload/v1644489405/pn2qgxuqgjpav6fx2l1y.png",
-      "price": "20022",
-      "cateId": "5",
-      "desc": "ahihihihi",
-      "status": "1"
-    },
-    {
       "id": "25",
       "name": "ggggggggggg updated 3",
       "img": "http://res.cloudinary.com/ecommercer2021/image/upload/v1644489405/pn2qgxuqgjpav6fx2l1y.png",
       "desc": "ahihihihi",
       "price": "300",
+      "quantity": "100",
       "status": "2",
       "cateId": "1"
     },
@@ -115,6 +103,7 @@
       "img": "http://res.cloudinary.com/ecommercer2021/image/upload/v1644489405/pn2qgxuqgjpav6fx2l1y.png",
       "desc": "ahihihihi",
       "price": "400",
+      "quantity": "100",
       "status": "1",
       "cateId": "2"
     },
@@ -122,6 +111,7 @@
       "name": "Mũ Pharaon",
       "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645199242/asm-js/dpmg8ex3g6tqlagei5p6.jpg",
       "price": "100",
+      "quantity": "100",
       "cateId": "2",
       "desc": "Làm từ da voi",
       "id": "5"
@@ -130,6 +120,7 @@
       "name": "Aó",
       "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645200060/asm-js/zgcnyi2m4yzdxpgqpcuk.jpg",
       "price": "1",
+      "quantity": "100",
       "cateId": "1",
       "desc": "Da cá sấu",
       "status": "1",
@@ -139,10 +130,21 @@
       "name": "test32",
       "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645205263/asm-js/kveiypcyjybapdal4u7o.jpg",
       "price": "100",
+      "quantity": "100",
       "cateId": "2",
       "desc": "Làm từ da cá ",
       "status": "2",
       "id": "7"
+    },
+    {
+      "name": "demo123",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645342601/asm-js/kq9clqvep8lt1zabowqb.jpg",
+      "price": "100",
+      "quantity": "123",
+      "cateId": "4",
+      "desc": "Ngon bổ rẻ",
+      "status": "1",
+      "id": "8"
     }
   ],
   "contacts": [
@@ -159,6 +161,11 @@
       "subject": "demo",
       "message": "eqweq",
       "id": "_EcbxlU"
+    }
+  ],
+  "comments":[
+    {
+      
     }
   ]
 }
