@@ -3,6 +3,7 @@ import aboutPage from "./page/about";
 import catePageAdmin from "./page/admin/category";
 import addCatePage from "./page/admin/category/add";
 import updateCatePage from "./page/admin/category/update";
+import commentPage from "./page/admin/comment";
 import feedbackAdmin from "./page/admin/feedback";
 import newListAdmin from "./page/admin/news";
 import AdminAddPosts from "./page/admin/news/addNewPage";
@@ -76,6 +77,9 @@ router.on({
     "/admin/categories": () => print(catePageAdmin),
     "/admin/categories/add":() => print(addCatePage),
     "/admin/categories/edit/:id": ({data}) => print(updateCatePage, data.id),
-    "/admin/feedback":()=> print(feedbackAdmin)
+
+    "/admin/feedbacks":()=> print(feedbackAdmin),
+
+    "/admin/comments":() => print(commentPage),
 });
 router.resolve();

@@ -56,7 +56,6 @@ const catePageAdmin ={
       const btns =  document.querySelectorAll('.btn');
       btns.forEach(btn =>{
         const id = btn.dataset.id;
-        console.log(id)
         btn.addEventListener('click', function(){
           const confirm = window.confirm("Bạn có chắc muốn xóa  không?");
           if(confirm){

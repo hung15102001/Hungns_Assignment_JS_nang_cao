@@ -75,6 +75,7 @@ const contactPage = {
                 message: document.querySelector("#desc").value,
             }).then(function(){
                 toastr.success("Đã gửi phản hồi, Cảm ơn bạn");
+                document.location.href("#")
             });
         })
     }

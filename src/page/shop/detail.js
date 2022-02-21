@@ -6,6 +6,8 @@ import "toastr/build/toastr.min.css";
 import { get } from "../../api/product";
 import { addToCart, decreaseQuantity, increaseQuantity } from "../ultils/cartApi";
 import { reRender } from "../ultils";
+import { add } from "../../api/comment";
+
 
 const shopDetail = {
    async render(id){
@@ -107,6 +109,51 @@ const shopDetail = {
                  
                 </div>
             </div>
+
+            <div class="row px-xl-5">
+            <div class="col">
+                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                    <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-pane-1">
+                        <h4 class="mb-3">Product Description</h4>
+                        <p>${products.desc}</p>
+                       
+                    </div>
+                   
+                    <div class="tab-pane fade" id="tab-pane-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="mb-4">Leave a review</h4>
+                                <small>Your email address will not be published. Required fields are marked *</small>
+                                <form id="form_comment">
+                                    <div class="form-group">
+                                        <label for="message">Your Review *</label>
+                                        <textarea id="message" cols="30" rows="5" class="form-control" required maxlength="100"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Your Name *</label>
+                                        <input type="text" class="form-control" id="name" value="${JSON.parse(localStorage.getItem('user')).fullname}" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Your Email *</label>
+                                        <input type="email" class="form-control" id="email" value="${JSON.parse(localStorage.getItem('user')).email}">
+                                    </div>
+                                    <input type="text" id="userId" value="${JSON.parse(localStorage.getItem('user')).id}" hidden>
+                                    <div class="form-group mb-0">
+                                        <button type="submit"  class="btn btn-primary px-3">Leave Your Review</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             
         </div>
             ${footer.render()}
@@ -116,11 +163,21 @@ const shopDetail = {
         const btnAddToCart = document.querySelector("#btnAddToCart");
         const  id  = btnAddToCart.dataset.id;
         var inputValue = document.querySelector("#inputValue").value;
-       
-       
+       const form_comment =  document.querySelector("#form_comment");
 
-     
+       form_comment.addEventListener("submit", async(e) => {
+           e.preventDefault();
 
+           add({
+               name: document.querySelector('#name').value,
+               email: document.querySelector('#email').value,
+               message: document.querySelector("#message").value,
+               userId: document.querySelector("#userId").value
+           }).then(function(){
+               toastr.success("done");
+           })
+       })
+       
         btnAddToCart.addEventListener("click", async () => {
             const { data } = await get(id);
             
