@@ -7,6 +7,7 @@ import "toastr/build/toastr.min.css";
 
 const nav = {
    async render(){
+       
        const response = await getAll();
     
         return `
@@ -30,7 +31,7 @@ const nav = {
                        
                         ${response.data.map((cate) => `
                             
-                            <a  href="/products?cateId=${cate.id}" class="nav-item nav-link">${cate.name}</a> 
+                            <a  href="/products/cateId/${cate.id}" class="nav-item nav-link">${cate.name}</a> 
                             `).join("")}
                            
                        

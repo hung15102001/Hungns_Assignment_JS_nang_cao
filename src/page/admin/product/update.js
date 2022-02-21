@@ -5,6 +5,8 @@ import { edit, get } from "../../../api/product";
 import headerAdmin from "../../../component/admin/headerAdmin"
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+import $ from "jquery";
+import validate from "jquery-validation";
 const updatePro = {
     async render(id){
         const cate = await getAll();

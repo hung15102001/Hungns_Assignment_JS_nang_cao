@@ -25,7 +25,3 @@ export const getCate = (id) =>{
     return instance.post(url, id)
 }
 
-export const search = (key) => {
-    const url = `/products/?q=${key}`;
-    return instance.get(url);
-}

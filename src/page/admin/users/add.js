@@ -3,7 +3,8 @@ import { add } from "../../../api/user";
 import headerAdmin from "../../../component/admin/headerAdmin";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
-
+import $ from "jquery";
+import validate from "jquery-validation";
 const userAminAdd = {
    async render(){
         return `
@@ -25,7 +26,7 @@ const userAminAdd = {
                       <label for="company-website" class="block text-sm font-medium text-gray-700"> Email </label>
                       <div class="mt-1 flex rounded-md shadow-sm">
                     
-                        <input type="text" name="email" id="email" class="py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="abc@gmail.com">
+                        <input type="text" name="email" id="email" class="email py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="abc@gmail.com">
                       </div>
                     </div>
                   </div>
@@ -33,14 +34,14 @@ const userAminAdd = {
                   <div>
                     <label for="about" class="block text-sm font-medium text-gray-700">Full Name </label>
                     <div class="mt-1">
-                      <input id="name" name="name" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Nguyễn văn A"></input>
+                      <input id="name" name="name" rows="3" class="fullname shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Nguyễn văn A"></input>
                     </div>
                     <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
                   </div>
                   <div>
                   <label for="about" class="block text-sm font-medium text-gray-700">Password </label>
                   <div class="mt-1">
-                    <input id="password" name="password" type="password" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="*********"></input>
+                    <input id="password" name="password" type="password" rows="3" class="password shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="*********"></input>
                   </div>
                   <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
                 </div>
@@ -56,7 +57,7 @@ const userAminAdd = {
                         <div class="flex text-sm text-gray-600">
                           <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                             <span>Upload a file</span>
-                            <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                            <input id="file-upload" name="file-upload" type="file" class="file sr-only">
                           </label>
                           <p class="pl-1">or drag and drop</p>
                         </div>

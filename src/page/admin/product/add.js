@@ -4,6 +4,8 @@ import headerAdmin from "../../../component/admin/headerAdmin"
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import { getAll } from "../../../api/categories";
+import $ from "jquery";
+import validate from "jquery-validation";
 const addProPage = {
      
    async render(){
@@ -27,7 +29,7 @@ const addProPage = {
                           <label for="company-website" class="block text-sm font-medium text-gray-700"> Name </label>
                           <div class="mt-1 flex rounded-md shadow-sm">
                         
-                            <input type="text" name="email" id="name" class="py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="Abc" requied>
+                            <input type="text" name="email" id="name" class="name py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="Abc" requied>
                           </div>
                         </div>
                       </div>
@@ -35,11 +37,11 @@ const addProPage = {
                       <div>
                         <label for="about" class="block text-sm font-medium text-gray-700">Price</label>
                         <div class="mt-1">
-                          <input id="price" name="name" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100$" requied></input>
+                          <input id="price" name="name" rows="3" class="price py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100$" requied></input>
                         </div>
                         <label for="about" class="block text-sm font-medium text-gray-700">Quantity</label>
                         <div class="mt-1">
-                        <input id="quantity" name="name" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100" requied></input>
+                        <input id="quantity" name="name" rows="3" class="quantity py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="100" requied></input>
                       </div>
                      
                       </div>
@@ -71,7 +73,7 @@ const addProPage = {
                     <div>
                     <label for="about" class="block text-sm font-medium text-gray-700">Description</label>
                     <div class="mt-1">
-                      <textarea id="desc" name="desc" rows="3" class="py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Chuối hột" requied></textarea>
+                      <textarea id="desc" name="desc" rows="3" class="desc py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Chuối hột" requied></textarea>
                     </div>
                   </div>
                
@@ -85,7 +87,7 @@ const addProPage = {
                             <div class="flex text-sm text-gray-600">
                               <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                 <span>Upload a file</span>
-                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                <input id="file-upload" name="file-upload" type="file" class="file sr-only">
                               </label>
                               <p class="pl-1">or drag and drop</p>
                             </div>
@@ -110,7 +112,7 @@ const addProPage = {
         const formAddUser = document.querySelector("#formadd");
         const CLOUDINARY_PRESET = "tsllkbbb";
         const CLOUDINARY_API_URL = "https://api.cloudinary.com/v1_1/cornyhung/image/upload";
-
+        
         formAddUser.addEventListener("submit", async (e) => {
             e.preventDefault();
 

@@ -40,7 +40,7 @@
   "cateProducts": [
     {
       "id": "1",
-      "name": "Shirts"
+      "name": "Shirts1"
     },
     {
       "id": "2",
@@ -60,6 +60,7 @@
       "email": "admin@gmail.com",
       "name": "admin",
       "fullname": "Admin",
+      "status": "1",
       "password": "$2a$10$xyrnKzsDIKkElu/SRLdJ/utCbltwLFgitvwOKFKpMeWGqgYHbZBSG",
       "id": 1
     },
@@ -67,84 +68,61 @@
       "email": "cornyhung@gmail.com",
       "password": "$2a$10$AqwEnKeSl47n2BKjbTtafuyNM8tlZNK8qTOByyTwueunsTG6lhIsa",
       "name": "hung15102001",
+      "status": "2",
       "fullname": "hung",
       "id": 3
-    },
-    {
-      "email": "syhungngo1015@gmail.com",
-      "password": "$2a$10$xADprc.ZwmNcRxU2PgiY9uiCP2gp9urxZAkUcSEZrV2zx9/MjboYa",
-      "name": "demo",
-      "fullname": "demo",
-      "id": 4
-    },
-    {
-      "email": "demo@gmail.com",
-      "password": "$2a$10$C.t8ZNRT9paQNqABGutKa.cItSNMtlKv/9pLBbM1q.c1NGhsYVJy2",
-      "name": "demo1",
-      "fullname": "demo123",
-      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645155033/asm-js/pp02qqcovffic2yxhzl5.jpg",
-      "id": 6
     }
   ],
   "products": [
     {
-      "id": "25",
-      "name": "ggggggggggg updated 3",
-      "img": "http://res.cloudinary.com/ecommercer2021/image/upload/v1644489405/pn2qgxuqgjpav6fx2l1y.png",
-      "desc": "ahihihihi",
-      "price": "300",
-      "quantity": "100",
-      "status": "2",
-      "cateId": "1"
-    },
-    {
-      "id": "26",
-      "name": "ggggggggggg updated 4",
-      "img": "http://res.cloudinary.com/ecommercer2021/image/upload/v1644489405/pn2qgxuqgjpav6fx2l1y.png",
-      "desc": "ahihihihi",
-      "price": "400",
-      "quantity": "100",
-      "status": "1",
-      "cateId": "2"
-    },
-    {
-      "name": "Mũ Pharaon",
-      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645199242/asm-js/dpmg8ex3g6tqlagei5p6.jpg",
+      "name": "Aó KHoác",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645423357/asm-js/vaa2trrbbij3f3m5xnn7.jpg",
       "price": "100",
-      "quantity": "100",
-      "cateId": "2",
-      "desc": "Làm từ da voi",
-      "id": "5"
-    },
-    {
-      "name": "Aó",
-      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645200060/asm-js/zgcnyi2m4yzdxpgqpcuk.jpg",
-      "price": "1",
       "quantity": "100",
       "cateId": "1",
-      "desc": "Da cá sấu",
+      "desc": "Đẹp mê hồn",
       "status": "1",
-      "id": "6"
+      "id": 1
     },
     {
-      "name": "test32",
-      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645205263/asm-js/kveiypcyjybapdal4u7o.jpg",
+      "name": "Váy",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645423428/asm-js/xwkgqandwc3cnedfcrfw.jpg",
+      "price": "100",
+      "quantity": "100",
+      "cateId": "3",
+      "desc": "Đẹp",
+      "status": "1",
+      "id": 2
+    },
+    {
+      "name": "Aó bò boy",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645423487/asm-js/a2loufdnlvwnn3iqetxw.jpg",
+      "price": "100",
+      "quantity": "100",
+      "cateId": "1",
+      "desc": "Đẹp",
+      "status": "1",
+      "id": 3
+    },
+    {
+      "name": "Quần dài",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645423515/asm-js/jan4uaqp7quzep1hcfxk.jpg",
+      "price": "100",
+      "quantity": "100",
+      "cateId": "4",
+      "desc": "Mlem",
+      "status": "1",
+      "id": 4
+    },
+    {
+      "name": "Vets",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645423547/asm-js/qhk6bx9hhwzoxxongpr4.jpg",
       "price": "100",
       "quantity": "100",
       "cateId": "2",
-      "desc": "Làm từ da cá ",
-      "status": "2",
-      "id": "7"
-    },
-    {
-      "name": "demo123",
-      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645342601/asm-js/kq9clqvep8lt1zabowqb.jpg",
-      "price": "100",
-      "quantity": "123",
-      "cateId": "4",
-      "desc": "Ngon bổ rẻ",
+      "desc": "Đẹp",
       "status": "1",
-      "id": "8"
+      "id": 5
     }
   ],
   "contacts": [
@@ -163,9 +141,7 @@
       "id": "_EcbxlU"
     }
   ],
-  "comments":[
-    {
-      
-    }
+  "comments": [
+    {}
   ]
 }

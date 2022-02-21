@@ -19,6 +19,7 @@ import contactPage from "./page/contact";
 import adminPage from "./page/dashboard";
 import homePage from "./page/home";
 import login from "./page/login";
+
 import listProForCate from "./page/proForCate";
 import shopDetail from "./page/shop/detail";
 import shopPage from "./page/shop/index";
@@ -55,7 +56,7 @@ router.on({
     "/cart":()=> print(cartPage),
     "/signin": () => print(login),
     "/signup": () => print(SignupPage),
-    "/products?cateId=:id":({data})=> print(listProForCate, data.id),
+    "/products/cateId/:id":({data})=> print(listProForCate, data.id),
 
     "/admin": () => print(adminPage),
 

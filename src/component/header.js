@@ -57,7 +57,7 @@ const header = {
                 </a>
                 <a href="" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">${JSON.parse(localStorage.getItem('cart')).length}</span>
                 </a>
             </div>
         </div>

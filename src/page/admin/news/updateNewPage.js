@@ -3,6 +3,8 @@ import { edit, get } from "../../../api/post";
 import headerAdmin from "../../../component/admin/headerAdmin";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+import $ from "jquery";
+import validate from "jquery-validation";
 const AdminEditnew = {
     async render(id) {
         const { data } = await get(id);
@@ -12,8 +14,8 @@ const AdminEditnew = {
         <div class="md:grid md:grid-cols-3 md:gap-6">
           <div class="md:col-span-1">
             <div class="px-4 sm:px-0">
-              <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-              <p class="mt-1 text-sm text-gray-600">Update Profile</p>
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Post Update</h3>
+              <p class="mt-1 text-sm text-gray-600">Update Post</p>
             </div>
           </div>
           <div class="mt-5 md:mt-0 md:col-span-2">
@@ -25,7 +27,7 @@ const AdminEditnew = {
                       <label for="company-website" class="block text-sm font-medium text-gray-700"> Title </label>
                       <div class="mt-1 flex rounded-md shadow-sm">
                     
-                        <input type="text" name="name" id="name" class="py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="abc" value="${data.title}">
+                        <input type="text" name="name" id="name" class="name py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="abc" value="${data.title}">
                       </div>
                     </div>
                   </div>
@@ -33,7 +35,7 @@ const AdminEditnew = {
                   <div>
                     <label for="about" class="block text-sm font-medium text-gray-700">Description </label>
                     <div class="mt-1">
-                      <textarea id="desc" name="name" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Abc" value="${data.desc}"></textarea>
+                      <textarea id="desc" name="name" rows="3" class="desc shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Abc" value="${data.desc}"></textarea>
                     </div>
                   </div>
                  

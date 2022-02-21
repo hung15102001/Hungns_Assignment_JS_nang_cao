@@ -2,6 +2,8 @@ import { add } from "../../../api/categories";
 import headerAdmin from "../../../component/admin/headerAdmin"
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+import $ from "jquery";
+import validate from "jquery-validation";
 const addCatePage = {
     render(){
         return `
@@ -23,7 +25,7 @@ const addCatePage = {
                       <label for="company-website" class="block text-sm font-medium text-gray-700"> Name  </label>
                       <div class="mt-1 flex rounded-md shadow-sm">
                     
-                        <input type="text" name="email" id="name" class="py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="abc">
+                        <input type="text" name="name" id="name" class="py-2 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="abc">
                       </div>
                     </div>
                   </div>
@@ -40,20 +42,43 @@ const addCatePage = {
         `
     },
     afterRender() {
-        const formAddPost = document.querySelector("#formAddCate");
-        formAddPost.addEventListener("submit", async (e) => {
-            e.preventDefault();
-    
-            add({
-                
-                name: document.querySelector("#name").value,
-            }).then(function(){
-                toastr.success("thêm thành công chuyển sau 2s");
-                setTimeout(() => {
-                  document.location.href = "/admin/categories";
-                }, 2000)
-              });
-        });
+        const formAddPost = $('#formAddCate');
+        // formAddPost.addEventListener("submit", async (e) => {
+        //     e.preventDefault();
+          
+          formAddPost.validate({
+            rules: {
+              "name":{
+                required: true,
+                minlength:6
+              }
+            },
+            messages:{ 
+              "name":{
+              required: "Ban kh được bỏ trống trường này",
+              minlength: "Nhập ít nhất 6 ký tự"
+              }
+            },
+            submitHandler: () => {
+           
+              async function handleAddCate(){
+                add({
+                  
+                  name: document.querySelector('#name').value,
+              }).then(function(){
+                  toastr.success("thêm thành công chuyển sau 2s");
+                  setTimeout(() => {
+                    document.location.href = "/admin/categories";
+                  }, 2000)
+                });
+              }
+              handleAddCate();
+          },
+         
+          })
+          
+           
+        // });
     },
 
 }

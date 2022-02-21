@@ -91,13 +91,13 @@ const shopDetail = {
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <button data-id="${products.id}" class="btn btn-primary btn-minus " type="button">
+                                <button data-id="" class="btn btn-primary btn-minus " type="button" onclick="minus()">
                                 <i class="fa fa-minus"></i>
                                 </button>
                             </div>
                             <input id="inputValue" type="text" class="form-control bg-secondary text-center" value="1">
                             <div class="input-group-btn">
-                                <button  class="btn btn-primary btn-plus "  type="button">
+                                <button  class="btn btn-primary btn-plus "  type="button" onclick="plus()">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
@@ -116,21 +116,10 @@ const shopDetail = {
         const btnAddToCart = document.querySelector("#btnAddToCart");
         const  id  = btnAddToCart.dataset.id;
         var inputValue = document.querySelector("#inputValue").value;
-        var minus = document.querySelector('.btn-minus');
-        var plus = document.querySelector('.btn-plus');
+       
        
 
-        minus.onclick = function(){
-            if(parseInt(inputValue)>1){
-                document.querySelector("#inputValue").value = parseInt(inputValue)-1;
-            }
-        }
-        
-        plus.onclick = function(){
-            if(parseInt(inputValue)< JSON.parse(localStorage.getItem(pro))){
-
-            }
-        }
+     
 
         btnAddToCart.addEventListener("click", async () => {
             const { data } = await get(id);

@@ -4,7 +4,8 @@ import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import axios from "axios";
 import { edit, get } from "../../../api/post";
-
+import $ from "jquery";
+import validate from "jquery-validation";
 const userAdminUpdate = {
    async render(id){
      console.log(123)
