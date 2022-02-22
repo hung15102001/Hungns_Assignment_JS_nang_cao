@@ -1,6 +1,8 @@
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import { signin } from "../api/user";
+import $ from "jquery";
+import validate from 'jquery-validation'
 const login = {
   
     render(){
@@ -68,28 +70,56 @@ const login = {
         `
     },
     afterRender(){
-      const formSignin = document.querySelector('#formSign');
-      formSignin.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          try {
-              const { data } = await signin({
-                  email: document.querySelector('#email').value,
-                  password: document.querySelector('#password').value,
-              });
-              if(data){
-                  // Lưu thông tin user vào localStorage
-                  localStorage.setItem("user", JSON.stringify(data.user));
-                  toastr.success("Đăng nhập thành công, chuyển trang sau 2s");
-                  setTimeout(() => {
-                      document.location.href="/"
-                  }, 2000)
-              }
-
-          } catch (error) {
-              toastr.error(error.response.data);
+      const formSignin = $('#formSign');
+    
+      formSignin.validate({
+        rules:{
+          "email":{
+            required: true,
+            email: true
+          },
+          "password":{
+            required: true, 
           }
-          
+        },
+        messages:{
+          "email":{
+            required: "Không được bỏ trống",
+            email: "Bạn phải nhập đúng định dạng email"
+          },
+          "password":{
+            required: "Không được bỏ trống", 
+          }
+        },
+
+        submitHandler : () => {
+            async function handleSignin(){
+              try {
+                const { data } = await signin({
+                    email: document.querySelector('#email').value,
+                    password: document.querySelector('#password').value,
+                });
+                if(data){
+                    // Lưu thông tin user vào localStorage
+                    localStorage.setItem("user", JSON.stringify(data.user));
+                    toastr.success("Đăng nhập thành công, chuyển trang sau 2s");
+                    setTimeout(() => {
+                        document.location.href="/"
+                    }, 2000)
+                }
+  
+            } catch (error) {
+                toastr.error(error.response.data);
+            }
+            
+            }
+            handleSignin()
+        }
+
       })
+
+         
+  
   }
 }
 export default login
