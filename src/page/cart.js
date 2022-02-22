@@ -4,6 +4,7 @@ import nav from "../component/nav"
 import { reRender } from "./ultils";
 import { decreaseQuantity, increaseQuantity, removeItemInCart } from "./ultils/cartApi";
 
+
 const cartPage = {
    async render(){
         let cart = [];
@@ -36,20 +37,20 @@ const cartPage = {
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn">
-                                    <button data-id="${item.id}" class="btn btn-decrease btn-sm btn-primary btn-minus">
+                                    <button data-id="${item.id}" class="btn btn-delete btn-decrease btn-sm btn-primary btn-minus">
                                     <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${item.quantity}">
                                 <div class="input-group-btn">
-                                    <button data-id="${item.id}" class="btn btn-increase btn-sm btn-primary btn-plus">
+                                    <button data-id="${item.id}" class="btn btn-delete btn-increase btn-sm btn-primary btn-plus">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
                         </td>
                         <td class="align-middle">${total = item.price * item.quantity}</td>
-                        <td class="align-middle"><button data-id="${item.id}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                        <td class="align-middle"><button data-id="${item.id}" class="btn btn-delete btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                     </tr>
                         `).join("")}
                          
@@ -96,11 +97,13 @@ const cartPage = {
     },
 
     afterRender(){
-        const btns = document.querySelectorAll('.btn');
+        const btns = document.querySelectorAll('.btn-delete');
         btns.forEach(button => {
             button.addEventListener('click', function(){
                 const id = button.dataset.id;
+              
                 if(button.classList.contains('btn-increase')){
+                  
                     increaseQuantity(id);
                 } else if (button.classList.contains('btn-decrease')){
                     decreaseQuantity(id, () => {

@@ -35,7 +35,7 @@ const header = {
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="/" class="text-decoration-none">
-                    <img src="img/www_tiengdong_com-meme-meo-cam-sung-tao-co-sung-ne.jpg" width=100>
+                    <img class="rounded" src="img/www_tiengdong_com-meme-meo-cam-sung-tao-co-sung-ne.jpg" width=100>
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
@@ -55,9 +55,9 @@ const header = {
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-                <a href="" class="btn border">
+                <a href="/cart" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">${JSON.parse(localStorage.getItem('cart')).length}</span>
+                    <span class="badge">${localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')).length : "0"}</span>
                 </a>
             </div>
         </div>

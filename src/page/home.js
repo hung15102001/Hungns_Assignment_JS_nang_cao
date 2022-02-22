@@ -1,8 +1,11 @@
-import { getAll } from "../api/product";
+import { get, getAll } from "../api/product";
 import footer from "../component/footer"
 import header from "../component/header"
 import nav from "../component/nav"
 import productList from '../component/list/newList';
+import { data } from "jquery";
+import { addToCart } from "./ultils/cartApi";
+import toastr from "toastr"
 
 const homePage = {
     async render(){
@@ -148,17 +151,17 @@ const homePage = {
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="${product.img}" alt="">
+                        <img class="img-fluid w-100" src="${product.img}" alt="" height="auto">
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">${product.name}</h6>
                         <div class="d-flex justify-content-center">
-                            <h6>${product.price}</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                            <h6>${product.price}$</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="/shop/${product.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                        <a href="/" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                        <a data-id="${product.id}" class="btn btn-add btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                     </div>
                 </div>
                 </div>
@@ -188,52 +191,26 @@ const homePage = {
                     </div>
                 </div>
             </div>
-            <!-- Subscribe End -->
-        
-        
-           
-        
-        
-            <!-- Vendor Start -->
-            <div class="container-fluid py-5">
-                <div class="row px-xl-5">
-                    <div class="col">
-                        <div class="owl-carousel vendor-carousel">
-                            <div class="vendor-item border p-4">
-                                <img src="img/vendor-1.jpg" alt="">
-                            </div>
-                            <div class="vendor-item border p-4">
-                                <img src="img/vendor-2.jpg" alt="">
-                            </div>
-                            <div class="vendor-item border p-4">
-                                <img src="img/vendor-3.jpg" alt="">
-                            </div>
-                            <div class="vendor-item border p-4">
-                                <img src="img/vendor-4.jpg" alt="">
-                            </div>
-                            <div class="vendor-item border p-4">
-                                <img src="img/vendor-5.jpg" alt="">
-                            </div>
-                            <div class="vendor-item border p-4">
-                                <img src="img/vendor-6.jpg" alt="">
-                            </div>
-                            <div class="vendor-item border p-4">
-                                <img src="img/vendor-7.jpg" alt="">
-                            </div>
-                            <div class="vendor-item border p-4">
-                                <img src="img/vendor-8.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Vendor End -->
+         
         </div>
             ${footer.render()}
         `
     },
     afterRender(){
-        
+        const btns = document.querySelectorAll(".btn-add");
+    
+        btns.forEach(btn => {
+           
+            const id = btn.dataset.id;
+            btn.addEventListener('click', async function(){
+                const {data} = await get(id);
+                addToCart({...data, quantity: 1}, () =>{
+                    console.log(123)
+                    toastr.success(`Thêm sản phẩm ${data.name} vào giỏ hàng thành công!`);
+                    document.location.href="/"
+                })
+            })
+        })
     }
 }
 export default homePage

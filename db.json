@@ -3,7 +3,7 @@
     {
       "id": "23",
       "title": "Bài viết 1",
-      "img": "http://res.cloudinary.com/ecommercer2021/image/upload/v1644489405/pn2qgxuqgjpav6fx2l1y.png",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645503584/asm-js/foiwx34ftz75uj0d4t4n.jpg",
       "desc": "ahihihihi"
     },
     {
@@ -89,14 +89,14 @@
   ],
   "products": [
     {
+      "id": 1,
       "name": "Aó KHoác",
-      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645423357/asm-js/vaa2trrbbij3f3m5xnn7.jpg",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645503780/asm-js/grahvt4w7l0gk7asn5hq.jpg",
       "price": "100",
       "quantity": "100",
-      "cateId": "1",
+      "cateId": "sYETddF",
       "desc": "Đẹp mê hồn",
-      "status": "1",
-      "id": 1
+      "status": "1"
     },
     {
       "name": "Váy",
@@ -139,14 +139,24 @@
       "id": 5
     },
     {
+      "id": 6,
       "name": "demo321",
-      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645462837/asm-js/qrvi9a8nbse8qla7telb.png",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645503512/asm-js/fkvb6gkrnioh6cahu9ic.jpg",
       "price": "12",
       "quantity": "12",
-      "cateId": "1",
+      "cateId": "sYETddF",
       "desc": "oáiudaudosad",
+      "status": "1"
+    },
+    {
+      "name": "demo123",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645522368/asm-js/jueqiexwf1gctwewfzeo.jpg",
+      "price": "123",
+      "quantity": "123",
+      "cateId": "1",
+      "desc": "demo",
       "status": "1",
-      "id": 6
+      "id": 7
     }
   ],
   "contacts": [
