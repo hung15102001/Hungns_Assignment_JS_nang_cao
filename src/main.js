@@ -57,7 +57,7 @@ router.on({
     "/cart":()=> print(cartPage),
     "/signin": () => print(login),
     "/signup": () => print(SignupPage),
-    "/products/cateId/:id":({data})=> print(listProForCate, data.id),
+    "/products/cateId/:cateId":({data})=> print(listProForCate, data.cateId),
 
     "/admin": () => print(adminPage),
 

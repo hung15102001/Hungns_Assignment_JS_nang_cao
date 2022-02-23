@@ -37,3 +37,15 @@ export const removeItemInCart = (id, next) => {
     localStorage.setItem('cart', JSON.stringify(cart));
     next();
 }
+export const totalPrice = () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let totalPrice = 0;
+
+    if(cart.length){
+        totalPrice = cart.reduce((total, item) => {
+            total += item.price * item.quantity;
+            return total
+        }, 0)
+    }
+    return totalPrice;
+}

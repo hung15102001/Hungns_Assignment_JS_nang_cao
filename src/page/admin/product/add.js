@@ -56,20 +56,32 @@ const addProPage = {
                            
                         </select>
                       </div>
-                      <label for="about" class="block text-sm font-medium text-gray-700 mt-2">Status</label>
 
                       <div class="mt-1">
+                      <label for="about" class="block text-sm font-medium text-gray-700 mt-2">Color</label>
+ 
+                      <select id="color">
                    
-                      <select id="status">
-                   
-                       <option value="1">Còn hàng</option>
-                       <option value="2">Hết hàng</option>
-                  
+                       <option value="1">red</option>
+                       <option value="2">blue</option>
+                       <option value="3">green</option>
+                       <option value="4">white</option>
+                       <option value="5">black</option>
+                    
                       </select>
-
                     </div>
+                  
                     </div>
+                    <div class="mt-1">
+                    <label for="about" class="block text-sm font-medium text-gray-700">Status</label>
+                    <select id="color">
+                 
+                     <option value="1">Còn hàng</option>
+                     <option value="2">Hết hàng</option>
+                
+                    </select>
 
+                  </div>
                     <div>
                     <label for="about" class="block text-sm font-medium text-gray-700">Description</label>
                     <div class="mt-1">
@@ -184,8 +196,8 @@ const addProPage = {
                     quantity: document.querySelector('#quantity').value,
                     cateId: document.querySelector("#cate").value,
                     desc: document.querySelector("#desc").value,
-                    status: document.querySelector("#status").value
-                    
+                    status: document.querySelector("#status").value,
+                    color: document.querySelector('#color').value,
                 }).then(function(){
                   toastr.success("thêm thành công chuyển sau 2s");
                   setTimeout(() => {

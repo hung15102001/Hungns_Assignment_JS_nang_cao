@@ -95,6 +95,7 @@
       "price": "100",
       "quantity": "100",
       "cateId": "sYETddF",
+      "color": "red",
       "desc": "Đẹp mê hồn",
       "status": "1"
     },
@@ -104,6 +105,7 @@
       "price": "100",
       "quantity": "100",
       "cateId": "3",
+      "color": "green",
       "desc": "Đẹp",
       "status": "1",
       "id": 2
@@ -114,6 +116,7 @@
       "price": "100",
       "quantity": "100",
       "cateId": "1",
+      "color": "black",
       "desc": "Đẹp",
       "status": "1",
       "id": 3
@@ -124,6 +127,7 @@
       "price": "100",
       "quantity": "100",
       "cateId": "4",
+      "color": "blue",
       "desc": "Mlem",
       "status": "1",
       "id": 4
@@ -134,6 +138,7 @@
       "price": "100",
       "quantity": "100",
       "cateId": "2",
+      "color": "black",
       "desc": "Đẹp",
       "status": "1",
       "id": 5
@@ -145,6 +150,7 @@
       "price": "12",
       "quantity": "12",
       "cateId": "sYETddF",
+      "color": "white",
       "desc": "oáiudaudosad",
       "status": "1"
     },
@@ -154,9 +160,21 @@
       "price": "123",
       "quantity": "123",
       "cateId": "1",
+      "color": "white",
       "desc": "demo",
       "status": "1",
       "id": 7
+    },
+    {
+      "id": 9,
+      "name": "demo13321",
+      "img": "http://res.cloudinary.com/cornyhung/image/upload/v1645524720/asm-js/uc7retlkieccngqyu3pn.jpg",
+      "price": "3123",
+      "quantity": "31231",
+      "cateId": "sYETddF",
+      "desc": "3131231",
+      "status": "1",
+      "color": "1"
     }
   ],
   "contacts": [

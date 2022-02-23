@@ -36,7 +36,14 @@ const updatePro = {
                           </div>
                         </div>
                       </div>
-          
+                      <label for="about" class="block text-sm font-medium text-gray-700">Color</label>
+                      <select id="color">
+                      <option value="1">red</option>
+                       <option value="2">blue</option>
+                       <option value="3">green</option>
+                       <option value="4">white</option>
+                       <option value="5">black</option>
+                      </select>
                       <div>
                         <label for="about" class="block text-sm font-medium text-gray-700">Price</label>
                         <div class="mt-1">
@@ -148,7 +155,8 @@ const updatePro = {
                 quantity: document.querySelector("#quantity").value,
                 cateId: document.querySelector("#cate").value,
                 desc: document.querySelector("#desc").value,
-                status: document.querySelector("#status").value
+                status: document.querySelector("#status").value,
+                color: document.querySelector('#color').value
             }).then(function(){
               toastr.success("Update thành công chuyển sau 2s");
               setTimeout(() => {

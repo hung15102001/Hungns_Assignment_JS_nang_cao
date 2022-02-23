@@ -2,14 +2,14 @@ import footer from "../component/footer"
 import header from "../component/header"
 import nav from "../component/nav"
 import { reRender } from "./ultils";
-import { decreaseQuantity, increaseQuantity, removeItemInCart } from "./ultils/cartApi";
+import { decreaseQuantity, increaseQuantity, removeItemInCart, totalPrice } from "./ultils/cartApi";
 
 
 const cartPage = {
    async render(){
         let cart = [];
         let total = 0;
-        let sum = 0;
+       
         if(localStorage.getItem('cart')){
             cart = JSON.parse(localStorage.getItem('cart'))
         }
@@ -49,7 +49,7 @@ const cartPage = {
                                 </div>
                             </div>
                         </td>
-                        <td class="align-middle">${total = item.price * item.quantity}</td>
+                        <td id ="mn" class=" align-middle">${total = item.price * item.quantity}</td>
                         <td class="align-middle"><button data-id="${item.id}" class="btn btn-delete btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                     </tr>
                         `).join("")}
@@ -72,10 +72,7 @@ const cartPage = {
                             <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 pt-1">
-                                <h6 class="font-weight-medium">Subtotal</h6>
-                                <h6 class="font-weight-medium">${sum += total}</h6>
-                            </div>
+                         
                             <div class="d-flex justify-content-between">
                                 <h6 class="font-weight-medium">Shipping</h6>
                                 <h6 class="font-weight-medium">$10</h6>
@@ -84,7 +81,7 @@ const cartPage = {
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold">$160</h5>
+                                <h5 class="font-weight-bold">${totalPrice()}</h5>
                             </div>
                             <button class="btn-block btn-primary my-3 py-3"><a href="/checkout">Proceed To Checkout</a></button>
                         </div>
