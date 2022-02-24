@@ -81,7 +81,7 @@ const cartPage = {
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold">${totalPrice()}</h5>
+                                <h5 class="font-weight-bold">${totalPrice()+10}$</h5>
                             </div>
                             <button class="btn-block btn-primary my-3 py-3"><a href="/checkout">Proceed To Checkout</a></button>
                         </div>

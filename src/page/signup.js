@@ -102,7 +102,7 @@ const SignupPage = {
             "password_comfirm":{
               required: true,
               minlength: 6,
-              equalTo: "password"
+         
             }
 
           },
@@ -123,7 +123,7 @@ const SignupPage = {
             "password_comfirm":{
               required: "Bạn không được bỏ trống trường này!",
               minlength: "Mật khẩu quá ngắn, ít nhất 6 ký tư",
-              equalTo: "Password không trùng"
+          
             }
           },
 
